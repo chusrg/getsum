@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="yandex-verification" content="86121d1550bd4a9e"/>
+    <meta name="description" content="Подобрать нужную сумму, подбор слагаемых для нужной суммы онлайн">
+    <meta name="keywords" content="подобрать сумму подбор нужной суммы онлайн">
+    <link rel="shortcut icon" href="images/calc.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Подобрать сумму, подбор нужной суммы онлайн</title>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header" style="height: 100px;">
+    <div class="container">
+        <div class="row align-items-center" style="height: 100px;">
+            <div class="col-11 d-flex align-items-center">
+                <img src="images/logo.png" style="height: 80px;"/>
+                <h1 class="pt-sans-regular unselectable"
+                      style="font-size: 42px; margin-left: 16px; line-height: 36px"><strong>Подобрать сумму</strong></h1><h2 style="font-size: 14px; color: crimson">&nbsp;&nbsp;&nbsp;&nbsp;<strong>онлайн</strong></h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Main content page -->
+<div id="main" class="content">
+    <div class="container h-100">
+        <div class="col">
+            <div id="numbersList" class="panel row">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Число</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody id="table">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <div class="input-group mb-2">
+                                <input id="val1" type="text" class="money form-control" value="63500">
+                                <span class="input-group-text">₽</span>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="removeNumber(this)">X
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>
+                            <div class="input-group mb-2">
+                                <input id="val2" type="text" class="money form-control" value="29329">
+                                <span class="input-group-text">₽</span>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="removeNumber(this)">X
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>
+                            <div class="input-group mb-2">
+                                <input id="val3" type="text" class="money form-control" value="61500">
+                                <span class="input-group-text">₽</span>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="removeNumber(this)">X
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>
+                            <div class="input-group mb-2">
+                                <input id="val4" type="text" class="money form-control" value="13200">
+                                <span class="input-group-text">₽</span>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="removeNumber(this)">X
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>
+                            <div class="input-group mb-3">
+                                <input id="val5" type="text" class="money form-control" value="27000">
+                                <span class="input-group-text">₽</span>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="removeNumber(this)">X
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button id="addBtn" type="button" class="btn btn-primary" style="width: 100%; cursor: pointer"
+                        onclick="addSum()">Добавить число
+                </button>
+            </div>
+            <div id="configPanel" class="row">
+                <div style="height: 16px;"></div>
+                <div class="panel">
+                    <p style="text-align: justify;">
+                        Введите <b>нужную сумму</b> и допустимую <b>точность</b> для подбора суммы
+                    </p>
+                    <div style="height: 16px;"></div>
+                    <div class="form-floating">
+                        <input id="targetSum" type="text" class="form-control" value="130000" oninput="checkSolveBtn()">
+                        <label for="targetSum">Нужная сумма, ₽</label>
+                    </div>
+                    <div style="height: 16px;"></div>
+                    <div class="form-floating">
+                        <input id="epsValue" type="text" class="form-control" value="5000" oninput="checkSolveBtn()">
+                        <label for="epsValue">Точность, ₽</label>
+                    </div>
+
+                    <div style="height: 16px;"></div>
+                    <button id="solveBtn" type="button" class="btn btn-primary" style="width: 100%; cursor: pointer"
+                            onclick="solve()">Подобрать сумму
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div style="height: 16px;"></div>
+                <center>
+                <div id="resultsFrame">
+                    <p></p>
+                </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <center>
+        <div style="height: 26px;"></div>
+        <p>
+    <span id="donateTitle"
+          data-bs-toggle="modal"
+          data-bs-target="#donateModal" class="pt-sans-regular unselectable"
+          style="font-size: 18px; color: red; cursor: pointer">#сказатьСпасибо!:)</span>
+        </p>
+    </center>
+</div>
+
+<!-- Donate modal -->
+<div  id="donateModal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span style="font-size: 18px;">
+                    <noindex>
+                    <p id="donateInfo" style="text-align: justify;">
+                        Сказать автору <strong>"Спасибо!"</strong> можно
+                        пожертвовав <strong>10₽</strong> (<i>или сколько не жалко
+                        <img src="images/smile.png" style="height: 16px;"/></i>) на карту
+                        <img src="images/sber.svg" style="height: 16px;"/>, на оплату
+                        хостинга и домена этого сайта, чтобы сайт и дальше продолжал свою работу
+                    </p>
+                    </noindex>
+                    <br>
+                    <center>
+                    <div class="input-group mb-3">
+                        <img src="images/card.png" style="height: 36px; margin-right: 12px;"/>
+                      <input id="cardNo" type="text" class="form-control" aria-label="Карта"
+                             aria-describedby="copy-btn" value="2202 2074 4272 6744" disabled>
+                      <button id="copy-btn" class="btn btn-outline-secondary" type="button" onclick="copyCardNo()">Копировать</button>
+                    </div>
+                    </center>
+                </span>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Окей</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script src="js/jquery.inputmask.min.js"></script>
+<script src="js/snippets.js"></script>
+
+<script>
+    let count = 5;
+    const maxCount = 15;
+
+    const alertPlaceholder = document.getElementById('main');
+    const appendAlert = (message, ms = 5000) => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML =
+            `<div class="alert alert-danger alert-dismissable" role="alert">` +
+            `   <div>${message}</div>` +
+            '</div>';
+
+        window.scrollTo(0, document.body.scrollHeight);
+        setTimeout(() => wrapper.remove(), ms);
+
+        alertPlaceholder.append(wrapper);
+    }
+
+    function addSum(val=0) {
+
+        if ( count >= maxCount ) {
+            appendAlert(`Количество слагаемых не может превышать ${maxCount}!`);
+            return;
+        }
+
+        let body = document.getElementById('table');
+
+        if (body !== null) {
+            ++count;
+
+            let record = document.createElement('tr');
+            record.innerHTML = `<th scope="row">${count}</th>\n` +
+                '                        <td>\n' +
+                '                            <div class="input-group mb-2">\n' +
+                `                                <input id="val${count}" type="text" class="money form-control" value="${val}">\n` +
+                '                                    <span class="input-group-text">₽</span>\n' +
+                '                            </div>\n' +
+                '                        </td>\n' +
+                '                        <td>\n' +
+                '                            <button type="button" class="btn btn-danger"\n' +
+                '                                    onClick="removeNumber(this)">X\n' +
+                '                            </button>\n' +
+                '                        </td>\n';
+
+            body.appendChild(record);
+
+            checkSolveBtn();
+            $(`#val${count}`).inputmask('999999999999', { placeholder: " " });
+        }
+    }
+
+    function clearResults() {
+        let results = document.getElementById('resultsFrame');
+        results.innerHTML = '';
+    }
+
+    function formatNumber(num) {
+        let nf = new Intl.NumberFormat('en-US');
+        return nf.format(num);
+    }
+
+    function addResults(result, expr, id) {
+
+        const results = document.getElementById('resultsFrame');
+        const val = formatNumber(result);
+
+        results.innerHTML +=
+            '                <p class="d-inline-flex gap-1">\n' +
+            `                    <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="${id}">\n` +
+            `                        ${val} ₽\n` +
+            '                    </button>\n' +
+            '                </p>\n' +
+            `                <div class="collapse" id="${id}">\n` +
+            `                    <div class="card card-body">${expr}</div><p></p>\n` +
+            '                </div>';
+    }
+
+    function removeNumber(node) {
+        node.parentNode.parentNode.parentNode.removeChild(node.parentNode.parentNode);
+
+        --count;
+        let idx = 1;
+        for ( let obj of document.querySelectorAll('th[scope=\"row\"]') ) {
+            obj.innerHTML = `${idx}`;
+            ++idx;
+        }
+
+        checkSolveBtn();
+    }
+
+    function copyCardNo() {
+        const copiedCardNo = document.getElementById("cardNo");
+        copiedCardNo.select();
+        copiedCardNo.setSelectionRange(0, 99999); // for mobile devices
+        navigator.clipboard.writeText(copiedCardNo.value);
+    }
+
+    function sumArray(arr) {
+        return arr.reduce((sum, val) => sum + val, 0);
+    }
+
+    function isCorrectSum(subSum, goalSum, eps) {
+        return Math.abs(sumArray(subSum) - goalSum) <= eps;
+    }
+
+    async function findSumExpr(numbers, targetSum, eps) {
+
+        let results = [];
+
+        if (sumArray(numbers) < targetSum) {
+            // + remove 0 and numbers < 0
+            return results;
+        }
+
+        findSumExprExt(numbers.sort((a, b) => b - a), [], targetSum, eps, results);
+
+        if (results.length === 0) {
+            const valSum = formatNumber(targetSum);
+            const valEps = formatNumber(eps);
+
+            document.getElementById('solveBtn').innerHTML = 'Подобрать сумму';
+            appendAlert(`Невозмно подобрать нужную сумму ${valSum} ₽ с точностью ${valEps} ₽! Попробуйте увеличить допустимую точность.`,10000);
+        } else {
+            results.sort((a, b) => parseInt(b.toString().split('=')[0]) - parseInt(a.toString().split('=')[0]));
+            for (let i = 0; i < results.length; ++i) {
+                const res = results[i];
+                addResults(res.split('=')[0], res, 'result' + i);
+            }
+        }
+
+        return results.sort();
+    }
+
+    function findSumExprExt(numbers, subSum, goalSum, eps, results) {
+        for (let p of numbers) {
+            let subPays = [...numbers];
+            subPays.splice(subPays.indexOf(p), 1);
+            let newSubSum = [...subSum];
+            newSubSum.push(p);
+
+            if (isCorrectSum(newSubSum, goalSum, eps)) {
+                newSubSum.sort((a, b) => a - b);
+                let resultExpr = sumArray(newSubSum) + '=' + newSubSum.join('+');
+                if (results.indexOf(resultExpr) === -1) {
+                    results.push(resultExpr);
+                }
+                continue;
+            }
+            else if (sumArray(newSubSum) > goalSum) {
+                newSubSum.pop();
+                continue;
+            }
+            findSumExprExt(subPays, newSubSum, goalSum, eps, results);
+        }
+    }
+
+    function solve() {
+        let numbers = [];
+
+        for ( let obj of document.querySelectorAll('input[class*=\"money\"]') ) {
+            numbers.push(parseInt(obj['value']));
+        }
+
+        clearResults();
+
+        document.getElementById('solveBtn').innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Идёт рассчёт...';
+        $('.content').find('input').prop('disabled', true);
+        $('.content').find('button').prop('disabled', true);
+
+        setTimeout(() => {
+            findSumExpr(numbers, $('#targetSum').val(), $('#epsValue').val());
+            document.getElementById('solveBtn').innerHTML = 'Подобрать сумму';
+            $('.content').find('input').prop('disabled', false);
+            $('.content').find('button').prop('disabled', false);
+        }, 1000);
+
+    }
+
+    function checkSolveBtn() {
+        document.getElementById('solveBtn').disabled = false;
+
+        if (count === 0 || $('#epsValue').val() === '' || $('#targetSum').val() === '') {
+            document.getElementById('solveBtn').disabled = true;
+        }
+    }
+
+    function test() {
+        $('.btn-danger').click();
+
+        for (const pay of [63500, 29329, 61500, 13200, 80000, 70000, 43700, 69339, 59000, 28500, 62500, 89510, 40000, 124000, 3200]) {
+            addSum(pay);
+        }
+
+        $('#targetSum').attr('value', '238000')
+        $('#epsValue').attr('value', '500')
+    }
+
+    function init() {
+        for (const i of '12345') {
+            $(`#val${i}`).inputmask('999999999999', {placeholder: " "});
+        }
+    }
+
+    init();
+/* test(); */
+</script>
+</body>
+
+</html>
